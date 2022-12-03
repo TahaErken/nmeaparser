@@ -10,8 +10,11 @@ public class main{
     {
         int port = 50001;
         UdpUnicastClient client = new UdpUnicastClient(port);
-        ExecutorService executorService = Executors.newFixedThreadPool(1);
+        UdpUnicastClient server = new UdpUnicastClient(port);
+        ExecutorService executorService = Executors.newFixedThreadPool(2);
         executorService.submit(client);
+        executorService.submit(server);
+
 
 
 
