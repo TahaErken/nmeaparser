@@ -3,7 +3,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
 
-public class UdpUnicastClient implements Runnable{
+public class UdpUnicastClient implements Runnable {
 
     private final int port;
 
@@ -17,17 +17,19 @@ public class UdpUnicastClient implements Runnable{
 
         try (DatagramSocket clientSocket = new DatagramSocket(port)) {
 
-            byte[] buffer =  new byte[65507];
-            clientSocket.setSoTimeout(5000);
+            byte[] buffer = new byte[65507];
+            clientSocket.setSoTimeout(50000);
 
-            while(true)
-            {
-                DatagramPacket datagramPacket = new DatagramPacket(buffer,0,buffer.length);
+            while (true) {
+                DatagramPacket datagramPacket = new DatagramPacket(buffer, 0, buffer.length);
                 clientSocket.receive(datagramPacket);
 
                 String receivedMessage = new String(datagramPacket.getData());
                 System.out.println(receivedMessage);
 
+                NMEA nmea = new NMEA();
+                nmea.parse(receivedMessage);
+                System.out.println(nmea.position);
 
 
             }
@@ -39,7 +41,11 @@ public class UdpUnicastClient implements Runnable{
             System.out.println("Timeout. Client is closing");
         }
 
-    }
+    }}
 
 
-}
+
+
+
+
+

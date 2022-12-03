@@ -18,11 +18,12 @@ public class main{
 
 
 
+/*
         NMEA nmea = new NMEA();
         nmea.parse(GPGGA_Test);
         System.out.println(nmea.position);
 
-
+*/
 
 
 
