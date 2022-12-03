@@ -22,7 +22,8 @@ public class UdpUnicastServer implements Runnable {
     @Override
     public void run() {
 
-        try (DatagramSocket serverSocket = new DatagramSocket(50000)) {
+        try (DatagramSocket serverSocket = new DatagramSocket(50000 )) {  // herangi farklı bir aplikasyon tarafından kullanılmayan herangi bir port olabilir
+
 
 
             for(int i=0;i<100;i++)
@@ -46,7 +47,7 @@ public class UdpUnicastServer implements Runnable {
         }
         catch (IOException e) {
 
-            System.out.println("Timeout. Client is closing");
+            e.printStackTrace();
         }
 
     }}

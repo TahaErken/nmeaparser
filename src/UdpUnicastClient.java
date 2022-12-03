@@ -17,7 +17,7 @@ public class UdpUnicastClient implements Runnable {
 
         try (DatagramSocket clientSocket = new DatagramSocket(port)) {
 
-            byte[] buffer = new byte[65507];
+            byte[] buffer = new byte[32];
             clientSocket.setSoTimeout(50000);
 
             while (true) {
